@@ -13,7 +13,7 @@ body {
   margin: 10px;
   overscroll-behavior: none;
   font-family: 'Space Mono', monospace;
-  font-size: 0.9em;
+  font-size: 0.85em;
 }
 
 .left {
@@ -39,6 +39,7 @@ body {
   padding: 3px 5px;
   background-color: rgba(234, 255, 243, 0.859);
   border: 3px double black;
+  overflow-wrap: break-word;
 }
 
 .date {
@@ -51,8 +52,16 @@ body {
   padding: 10px;
   width: 100%;
   margin: 20px auto;
+  overflow-wrap: break-word;
 }
 
 a {
     color: #dd379d;
+}
+
+
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 0.75em;
+  }
 }
