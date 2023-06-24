@@ -1,0 +1,58 @@
+html {
+  background-image: url("assets/holo.jpg");
+  background-repeat: repeat;
+  background-color: rgba(255, 222, 211, 0.903);
+  background-blend-mode: multiply;
+
+}
+
+body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 10px;
+  overscroll-behavior: none;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.9em;
+}
+
+.left {
+  margin: 20px auto;
+  width: 60%;
+}
+
+.right {
+  margin: 25px auto;
+  width: 20%;
+}
+
+#table {
+  overflow: scroll;
+}
+
+.title {
+    color: rgb(0, 0, 0);
+}
+
+.entry {
+  margin: 10px 0;
+  padding: 3px 5px;
+  background-color: rgba(234, 255, 243, 0.859);
+  border: 3px double black;
+}
+
+.date {
+  text-align: right;
+}
+
+.box {
+  background-color: rgba(255, 255, 255, 0.873);
+  border: 3px double black;
+  padding: 10px;
+  width: 100%;
+  margin: 20px auto;
+}
+
+a {
+    color: #dd379d;
+}
