@@ -7,10 +7,17 @@ $(document).ready(function () {
     $.getJSON("https://opensheet.elk.sh/" + SPREADSHEET_ID + "/" + TAB_NAME, function (data) {
         for (let i = data.length - 1; i >= 0; i--) {
             let entry = data[i];
+            let link="";
+
+            if (entry.link) {
+                console.log("LINK")
+                link = `<a href="${entry.link}" target="_blank">📎</a>`
+            }
+
             if (!entry.private) {
                 $(`<div class="entry"> 
-                        <div class="tweet">` + entry.thought + `</div>
-                        <div class="date">` + entry.date + `</div>
+                        <div class="tweet">` + entry.thought + `</div> 
+                        <div class="date">` + link + ` ` + entry.date + `</div> 
                     </div>`)
                     .appendTo("#table");
             }
