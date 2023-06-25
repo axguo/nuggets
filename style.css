@@ -26,10 +26,6 @@ body {
   width: 30%;
 }
 
-#table {
-  overflow: scroll;
-}
-
 .title {
     color: rgb(0, 0, 0);
 }
