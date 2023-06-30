@@ -1,53 +1,117 @@
+// Define the base URL for your API
+const API_BASE_URL = 'https://cook-nuggets.onrender.com';
 
-let SPREADSHEET_ID = "18Zt-EY1HikdgJTkp34FbVkxhBuRTleBy3gau63FvI_I";
-let TAB_NAME = "Sheet1";
-let INFO_TAB = "Sheet2";
+let currentPage = 1;
+let isLoading = false;
+let exhaustedPosts = false;
 
-$(document).ready(function () {
-    $.getJSON("https://opensheet.elk.sh/" + SPREADSHEET_ID + "/" + TAB_NAME, function (data) {
-        for (let i = data.length - 1; i >= 0; i--) {
-            let entry = data[i];
-            let link="";
+const loadingElement = document.getElementById('loading');
+const errorElement = document.getElementById('error');
+loadingElement.style.display = 'block';
 
-            if (entry.link) {
-                console.log("LINK")
-                link = `<a href="${entry.link}" target="_blank">📎</a>`
-            }
 
-            if (!entry.private) {
-                $(`<div class="entry"> 
-                        <div class="tweet">` + entry.thought + `</div> 
+// Define a function to fetch nuggets from your API
+async function fetchNuggets(page = 1) {
+    const url = `${API_BASE_URL}/nuggets?page=${page}`;
+
+    try {
+    const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch nuggets');
+        }
+
+    // Parse the JSON response
+    const data = await response.json();
+
+    currentPage ++;
+
+    loadingElement.style.display = 'none';
+
+    return data;
+    } catch (error) {
+        errorElement.style.display = 'block';
+        loadingElement.style.display = 'none';
+    }
+}
+
+async function fetchStatus() {
+    const url = `${API_BASE_URL}/getStatus`;
+    const response = await fetch(url);
+
+    const data = await response.json();
+
+    return data;
+}
+
+async function loadMoreNuggets() {
+    if (isLoading) {
+        return;
+    }
+    isLoading = true;
+
+    const nuggets = await fetchNuggets(currentPage);
+    if (nuggets.length < 20) {
+        exhaustedPosts = true;
+    }
+    currentPage++;
+    isLoading = false;
+
+    return nuggets;
+}
+
+// fetch nuggets and status
+fetchNuggets().then(data => {formatPosts(data);});
+fetchStatus().then(data => formatStatus(data));
+
+function formatPosts(data) {
+    for (let i = 0; i < data.length; i++) {
+        let entry = data[i];
+        let link = "";
+
+        if (entry.link) {
+            link = `<a href="${entry.links}" target="_blank">📎</a>`
+        }
+
+        if (!entry.private) {
+            $(`<div class="entry"> 
+                        <div class="tweet">` + entry.nug + `</div> 
                         <div class="date">` + link + ` ` + entry.date + `</div> 
                     </div>`)
-                    .appendTo("#table");
-            }
+                .appendTo("#table");
         }
-    });
+    }
+}
 
-    $.getJSON("https://opensheet.elk.sh/" + SPREADSHEET_ID + "/" + INFO_TAB, function (data) {
-
-        let entry = data[0];
-
-        $(`<div class="status"> <b><a href="https://www.aliciaguo.com/" target="_blank">alicia</a></b> is ` + entry.status + `
+function formatStatus(data) {
+    $(`<div class="status"> <b><a href="https://www.aliciaguo.com/" target="_blank">alicia</a></b> is ` + data.status + `
                     </div><br>`)
-            .appendTo("#status");
+        .appendTo("#status");
 
-        $(`<div class="mood"> <b>mood</b>: ` + entry.mood + `
+    $(`<div class="mood"> <b>mood</b>: ` + data.mood + `
                     </div>`)
-            .appendTo("#status");
+        .appendTo("#status");
 
-        $(`<div class="nugget"> <b>in the oven</b>: ` + entry.nugget + `
+    $(`<div class="nugget"> <b>in the oven</b>: ` + data.nugget + `
                     </div>`)
-            .appendTo("#nugget");
+        .appendTo("#nugget");
 
-        $(`<div class="note"> <b>note</b>: ` + entry.note + `
+    $(`<div class="note"> <b>note</b>: ` + data.note + `
                     </div>`)
-            .appendTo("#note");
+        .appendTo("#note");
+}
 
 
-    });
-});
+function isAtBottom() {
+    console.log("WE NEED MORE POSTS");
+    const scrollThreshold = 100; 
+    return window.innerHeight + window.scrollY >= document.body.offsetHeight - scrollThreshold;
+}
 
+function handleScroll() {
+    if (isAtBottom() && !isLoading && !exhaustedPosts) {
+        loadMoreNuggets().then(data => { formatPosts(data); });
+    }
+}
 
-
-// thank you https://github.com/benborgers/opensheet
+window.addEventListener('scroll', handleScroll);
