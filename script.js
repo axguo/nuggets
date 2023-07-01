@@ -92,7 +92,7 @@ function formatStatus(data) {
                     </div>`)
         .appendTo("#status");
 
-    $(`<div class="nugget"> <b>in the oven</b>: ` + data.nugget + `
+    $(`<div class="nugget"> <b>in the oven</b>: ` + data.cooking + `
                     </div>`)
         .appendTo("#nugget");
 
