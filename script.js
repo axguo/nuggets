@@ -1,5 +1,5 @@
 // Define the base URL for your API
-const API_BASE_URL = 'coral-app-capxa.ondigitalocean.app';
+const API_BASE_URL = 'https://coral-app-capxa.ondigitalocean.app';
 
 let currentPage = 1;
 let isLoading = false;
