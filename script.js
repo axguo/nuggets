@@ -103,7 +103,6 @@ function formatStatus(data) {
 
 
 function isAtBottom() {
-    console.log("WE NEED MORE POSTS");
     const scrollThreshold = 100; 
     return window.innerHeight + window.scrollY >= document.body.offsetHeight - scrollThreshold;
 }
