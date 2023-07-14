@@ -33,13 +33,15 @@ body {
 .entry {
   margin: 10px 0;
   padding: 3px 5px;
-  background-color: rgba(234, 255, 243, 0.859);
-  border: 3px double black;
+  background-color: rgba(234, 255, 243, 0.532);
+  border: 3px double  #000000;
   overflow-wrap: break-word;
 }
 
 .date {
   text-align: right;
+  color: #df6fb4;
+  font-size: 0.9em;
 }
 
 .box {

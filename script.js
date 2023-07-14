@@ -70,6 +70,7 @@ function formatPosts(data) {
         let entry = data[i];
         let link = "";
         let image = "";
+        let time = "";
 
         if (entry.links) {
             link = `<a href="${entry.links}" target="_blank">📎</a>`
@@ -79,11 +80,17 @@ function formatPosts(data) {
             image = `<img class="img" src=${entry.image}>`
         }
 
+        // if (entry.time) {
+        //     time = entry.time;
+        //     let period = time.split(" ")[1];
+        //     time = time.split(":").slice(0, 2).join(":") + period;
+        // }
+
         if (!entry.private) {
             $(`<div class="entry"> 
                         <div class="tweet">` + entry.nug.replace(/\n/g, '<br>') + `</div>`
                         + image + ` 
-                        <div class="date">` + link + ` ` + entry.date + `</div>
+                        <div class="date">${link} ${entry.date} ${time}</div>
                     </div>`)
                 .appendTo("#table");
         }
