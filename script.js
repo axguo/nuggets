@@ -1,5 +1,6 @@
 // Define the base URL for your API
 const API_BASE_URL = 'https://coral-app-capxa.ondigitalocean.app';
+// const API_BASE_URL = 'http://localhost:3000';
 
 let currentPage = 1;
 let isLoading = false;
@@ -68,15 +69,21 @@ function formatPosts(data) {
     for (let i = 0; i < data.length; i++) {
         let entry = data[i];
         let link = "";
+        let image = "";
 
-        if (entry.link) {
+        if (entry.links) {
             link = `<a href="${entry.links}" target="_blank">📎</a>`
+        }
+
+        if (entry.image) {
+            image = `<img class="img" src=${entry.image}>`
         }
 
         if (!entry.private) {
             $(`<div class="entry"> 
-                        <div class="tweet">` + entry.nug + `</div> 
-                        <div class="date">` + link + ` ` + entry.date + `</div> 
+                        <div class="tweet">` + entry.nug.replace(/\n/g, '<br>') + `</div>`
+                        + image + ` 
+                        <div class="date">` + link + ` ` + entry.date + `</div>
                     </div>`)
                 .appendTo("#table");
         }

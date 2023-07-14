@@ -54,6 +54,14 @@ a {
     color: #dd379d;
 }
 
+img {
+  max-height: 200px;
+  max-width: 200px;
+  width: auto;
+  height: auto;
+  margin: 10px;
+}
+
 
 @media screen and (max-width: 768px) {
   body {
