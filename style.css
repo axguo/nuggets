@@ -1,8 +1,9 @@
 html {
-  background-image: url("assets/holo.jpg");
+  /* background-image: url("assets/holo.jpg"); */
+  background-image: url("assets/ii.jpg");
   background-repeat: repeat;
-  background-color: rgba(255, 222, 211, 0.903);
-  background-blend-mode: multiply;
+  /* background-color: rgba(234, 144, 180, 0.903);
+  background-blend-mode: multiply; */
 
 }
 
@@ -14,6 +15,7 @@ body {
   overscroll-behavior: none;
   font-family: 'Space Mono', monospace;
   font-size: 0.85em;
+  color:#190783;
 }
 
 .left {
@@ -33,7 +35,7 @@ body {
 .entry {
   margin: 10px 0;
   padding: 3px 5px;
-  background-color: rgba(234, 255, 243, 0.532);
+  background-color: rgba(235, 234, 255, 0.832);
   border: 3px double  #000000;
   overflow-wrap: break-word;
 }
@@ -58,7 +60,7 @@ a {
 
 img {
   max-height: 200px;
-  max-width: 200px;
+  max-width: 90%;
   width: auto;
   height: auto;
   margin: 10px;
