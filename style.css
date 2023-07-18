@@ -35,19 +35,19 @@ body {
 .entry {
   margin: 10px 0;
   padding: 3px 5px;
-  background-color: rgba(235, 234, 255, 0.832);
+  background-color: rgba(235, 234, 255, 0.917);
   border: 3px double  #000000;
   overflow-wrap: break-word;
 }
 
 .date {
   text-align: right;
-  color: #df6fb4;
+  color: #c3308b;
   font-size: 0.9em;
 }
 
 .box {
-  background-color: rgba(255, 255, 255, 0.873);
+  background-color: rgba(215, 229, 248, 0.873);
   border: 3px double black;
   padding: 10px;
   margin: 20px auto;
