@@ -55,7 +55,6 @@ async function loadMoreNuggets() {
     if (nuggets.length < 20) {
         exhaustedPosts = true;
     }
-    currentPage++;
     isLoading = false;
 
     return nuggets;
@@ -122,7 +121,9 @@ function isAtBottom() {
 }
 
 function handleScroll() {
+    console.log("we're scrolling")
     if (isAtBottom() && !isLoading && !exhaustedPosts) {
+        console.log("MORE NUGGETS")
         loadMoreNuggets().then(data => { formatPosts(data); });
     }
 }
