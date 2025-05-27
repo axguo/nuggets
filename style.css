@@ -4,7 +4,6 @@ html {
   background-repeat: repeat;
   /* background-color: rgba(234, 144, 180, 0.903);
   background-blend-mode: multiply; */
-
 }
 
 body {
@@ -65,7 +64,6 @@ img {
   height: auto;
   margin: 10px;
 }
-
 
 @media screen and (max-width: 768px) {
   body {
